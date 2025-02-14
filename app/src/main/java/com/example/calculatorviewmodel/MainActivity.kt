@@ -1,7 +1,9 @@
 package com.example.calculatorviewmodel
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -38,6 +40,13 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     viewModel.calculate(width, lenght, height)
                     displayResult()
+                    if (binding.btnPoto.visibility == View.GONE){
+                        binding.btnPoto.visibility = View.VISIBLE
+                        binding.btnPoto.setOnClickListener{
+                            val intent = Intent(this@MainActivity, FotoActivity::class.java)
+                            startActivity(intent)
+                        }
+                    }
                 }
             }
         }
