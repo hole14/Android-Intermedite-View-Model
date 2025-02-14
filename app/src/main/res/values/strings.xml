@@ -5,4 +5,15 @@
     <string name="height">Tinggi</string>
     <string name="calculate">Hitung</string>
     <string name="result">Result</string>
+
+    <string-array name="data_poto">
+        <item>@drawable/poto_1</item>
+        <item>@drawable/poto_2</item>
+        <item>@drawable/poto_3</item>
+        <item>@drawable/poto_4</item>
+        <item>@drawable/poto_5</item>
+        <item>@drawable/poto_6</item>
+        <item>@drawable/poto_7</item>
+        <item>@drawable/poto_8</item>
+    </string-array>
 </resources>
