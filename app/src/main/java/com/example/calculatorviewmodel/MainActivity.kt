@@ -6,15 +6,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.calculatorviewmodel.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    @SuppressLint("SetTextI18n")
+    private lateinit var viewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        displayResult()
 
         binding.btnCalculate.setOnClickListener{
             val width = binding.edtWidth.text.toString()
@@ -32,10 +36,15 @@ class MainActivity : AppCompatActivity() {
                     binding.edtHeight.error = "Masih Kosong"
                 }
                 else -> {
-                    val result = width.toDouble() * lenght.toDouble() * height.toDouble()
-                    binding.tvResult.text = result.toString()
+                    viewModel.calculate(width, lenght, height)
+                    displayResult()
                 }
             }
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun displayResult() {
+        binding.tvResult.text = viewModel.result.toString()
     }
 }
